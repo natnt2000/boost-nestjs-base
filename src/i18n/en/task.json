@@ -1,4 +1,4 @@
 {
   "HELLO_WORLD": "Hello world.",
-       "NOT_FOUND": "Task {id} not found."
+  "NOT_FOUND": "Task {id} not found."
 }

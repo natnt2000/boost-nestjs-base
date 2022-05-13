@@ -10,10 +10,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Document Generator')
-    .setDescription(' The Document Generator API description')
+    .setTitle('Project Base')
+    .setDescription(' The Project Base API description')
     .setVersion('1.0.0')
-    .addTag('docs')
     .addBearerAuth({ type: 'apiKey', name: 'Authorization', in: 'header' })
     .build();
 
