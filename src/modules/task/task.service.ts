@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
-import { FindConditions, Like, Repository } from 'typeorm';
+import { FindOptionsWhere, Like, Repository } from 'typeorm';
 import { IPagination } from '../../common/common.interface';
 import { dayjs } from '../../common/utils/dayjs.util';
 import { calculateSkipPagination } from '../../common/utils/pagination.util';
@@ -27,7 +27,7 @@ export class TaskService {
 
   async findAll(getTaskDto: GetTaskDto): Promise<IPagination<ITask>> {
     const { limit, page, search, status } = getTaskDto;
-    const whereConditions: FindConditions<ITask> = {};
+    const whereConditions: FindOptionsWhere<ITask> = {};
 
     if (search) {
       whereConditions.name = Like(`%${search}%`);
@@ -54,7 +54,7 @@ export class TaskService {
   }
 
   async findOne(id: number): Promise<ITask> {
-    const task: ITask = await this.repository.findOne({ id });
+    const task: ITask = await this.repository.findOne({ where: { id } });
 
     if (!task) {
       throw new HttpException(
