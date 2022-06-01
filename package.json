@@ -90,10 +90,10 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "*.ts": [
-      "npm run lint",
-      "npm run format",
-      "git add ."
+    "src/**/*.{ts,json}": [
+      "yarn lint",
+      "yarn format",
+      "ga ."
     ]
   }
 }
